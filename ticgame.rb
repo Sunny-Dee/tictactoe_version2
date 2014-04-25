@@ -13,9 +13,10 @@ winning_combinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],
 # Helper functions
 	def new_game
 		puts "Basic Tic Tac Toe"
-		@board =["0","1","2","3","4","5","6","7","8"]
-		winning_combinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+		#@board =["0","1","2","3","4","5","6","7","8"] I initially put the here to reset after the prior game has done a global substitution. 
+		#winning_combinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 		draw_board
+		play
 	end
 
 	def draw_board
@@ -68,3 +69,5 @@ winning_combinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],
 	end
 
 end
+
+Game.new.new_game

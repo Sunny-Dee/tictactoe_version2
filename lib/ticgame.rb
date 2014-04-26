@@ -4,7 +4,7 @@ class Game
 	def new_game
 		puts "Basic Tic Tac Toe"
 		@board =["0","1","2","3","4","5","6","7","8"] 
-		@winning_combinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+		$winning_combinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 		@turn = 1
 		draw_board
 		play
@@ -27,9 +27,21 @@ class Game
 		while @turn <= 9
 			puts "Choose the number of the cell you want to mark"
 			choice = gets.to_i
-	 		#if turn % 2 != 0
-	 		@board[choice] = 'x'
-	 		print draw_board
+	 		if  @turn % 2 == 0
+	 			@board[choice] = 'x'
+
+	 			$winning_combinations.each do |item| 
+					item.map! { |e| e == choice ? 'x' :  e  }
+				end
+
+	 		elsif @turn % 2 != 0
+	 			@board[choice] = 'o'
+
+	 			$winning_combinations.each do |item| 
+					item.map! { |e| e == choice ? 'o' :  e  }	
+				end
+	 		end
+	 		print draw_board 
 	 		@turn += 1
 	 		check_for_draws
 	 	end
@@ -38,7 +50,8 @@ class Game
 	def check_for_draws
 		if @turn > 9 
 			puts "Game Over"
-			new_game
+			puts " "
+			#new_game
 		else
 			play
 		end
@@ -47,3 +60,4 @@ class Game
 end
 
 Game.new.new_game
+
